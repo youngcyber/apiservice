@@ -5,14 +5,18 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiService {
-  baseURL = 'http://localhost:8888/ion3-api/';
+  baseURL = 'http://httapi.xyz/place-api/';
   constructor(public http: HttpClient) { }
-  // ดึงข้อมูลทั้งหมด
+  //  แสดงข้อมูลทั้งหมด
   viewAllData(): Observable<any> {
     return this.http.get<any>(this.baseURL + 'view-all.php');
   }
+ // แสดงข้อมูลตาม pid (detail)
+  viewDetailData(dataPost): Observable<any> {
+      return this.http.post(this.baseURL + 'view-detail.php', dataPost);
+   }
   // ดึงข้อมูลตามเงื่อนไข
-   viewData(dataPost): Observable<any> {
+  viewData(dataPost): Observable<any> {
     return this.http.post(this.baseURL + 'view.php', dataPost);
  }
  // ค้นหา
